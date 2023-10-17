@@ -2192,6 +2192,26 @@ void advlog()
         }
         getline(openandcheck, passp);
         int passplength = passp.length();
+        if(passplength !=240 && !passp.empty())
+        {
+            char fac;
+            cout << "\x1B[31m";
+            cout << "\n";
+            cout << "-----------------------------------------\n";
+            cout << "|                ERROR                  |\n";
+            cout << "-----------------------------------------\n";
+            cout<<"\033[0;31mWe have Detected Modification in our Resources File\033[0m"<<endl;
+            cout<<"\033[0;32mSolve This Issue By Factory Reset[y/n]:\033[0m";
+            cin>>fac;
+            if(fac == 'y' || fac == 'Y')
+            {
+                ofstream x1("login_detail.txt",ios::trunc);
+                ofstream x2("MessageHistory.txt",ios::trunc);
+                ofstream x3("DMessageHistory.txt",ios::trunc);
+
+            }
+            exit(0);
+        }
         for(int i = 0; i < passplength - 96 ; i++)
         {
             passwordFromFile += passp[i]; 
@@ -2202,6 +2222,7 @@ void advlog()
         if (passwordFromFile.empty())
         {
             remove("MessageHistory.txt");
+            remove("DMessageHistory.txt");
             EnterPassword();
             
         }
@@ -2277,6 +2298,7 @@ void advlog()
         {
             secondary.clear();
             system("cls");
+            cout << "\033[1;31mPlease select this wisely. It cannot be changed again.\033[0m"<<endl;
             cout<<"--------------------------------------------------------------------------------"<<endl;
             cout<<"|           Enter Secondary Password In Case You Forgot Your Password          |" << endl;
             cout<<"--------------------------------------------------------------------------------"<<endl;
